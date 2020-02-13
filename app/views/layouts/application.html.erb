@@ -30,7 +30,6 @@
     <%#= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
 
     <%= javascript_include_tag "application" %>
-    <%= x=1 %>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
@@ -55,6 +54,8 @@
                 <li><%= link_to "Log In", "/users/sign_in"  %></li>
               <% else %>
                 <li><%= link_to "Log Out", "/users/sign_out"  %></li>
+                <li><%= link_to "Edit", "/users/edit"  %></li>
+
               <% end %>
             </ul>
           </div>
@@ -63,26 +64,15 @@
     </div>
     </div>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-3">
-          <div class="well sidebar-nav">
-            <h3>Sidebar</h3>
-            <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
+    <div class="container" align='center'>
+      <div class="row" >
         <div class="col-lg-9">
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
       </div><!--/row-->
 
-      <footer>
+      <footer align="center">
         <p>&copy; Company 2020</p>
       </footer>
 
@@ -90,3 +80,15 @@
 
   </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+ 
