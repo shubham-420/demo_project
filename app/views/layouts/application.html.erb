@@ -55,11 +55,12 @@
               <% else %>
                 <li><%= link_to "Log Out", "/users/sign_out"  %></li>
                 <li><%= link_to "Edit", "/users/edit"  %></li>
-
+                <li><%= link_to "Add Product", "/products/new"  %> </li>
               <% end %>
             </ul>
           </div>
         </div>
+          <% if user_signed_in? %><strong>WelCome <%= current_user.id %></strong><%end%>
       </div>
     </div>
     </div>

@@ -5,14 +5,26 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    # super
+  end
+
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    @product = Product.new(product_params)
+    @product.save
+    redirect_to @product
+  end
+ 
+   private
+  def product_params
+    params.require(:article).permit(:title, :text)
+  end
+  
+  def show
+    render plain: "sdf"
+  end
 
   # GET /resource/edit
   # def edit

@@ -2,15 +2,17 @@
 
 class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
+  # def new
+  #   binding.pry
+  # end
 
   # GET /resource/sign_in
   # def new
   #   super
   # end
 
-  # POST /resource/sign_in
   # def create
-  #   super
+    # redirect_to products_new_path
   # end
 
   # DELETE /resource/sign_out

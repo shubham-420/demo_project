@@ -22,10 +22,6 @@
                 <div class="card-heading"></div>
                 <div class="card-body">
                     <h2 class="title">Registration Info</h2>
-
-
-                  <!--   <form method="POST"> -->
-
                     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
                     <%= render "devise/shared/error_messages", resource: resource %>
                         
@@ -36,6 +32,17 @@
                         <div class="input-group">
                              <%= f.label :email %>
                              <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+                        </div>
+                         <div class="input-group">
+                             <%= f.label :Contact_Number %>
+                             <%= f.text_field :number %>
+                        </div>
+                        <div class="input-group">
+                          <%= f.label :Are_you? %><br />
+                          <%= f.label :role, "buyer", :value => "Buyer"  %>
+                          <%= f.radio_button :role, "buyer", :checked => true %>
+                          <%= f.label :role, "seller", :value => "Seller" %>
+                          <%= f.radio_button :role, "seller" %>
                         </div>
                         <div class="input-group">
                               <%= f.label :password %>
@@ -56,22 +63,11 @@
         </div>
     </div>
 
-    <!-- Jquery JS-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <!-- Vendor JS-->
-    <script src="vendor/select2/select2.min.js"></script>
-    <script src="vendor/datepicker/moment.min.js"></script>
-    <script src="vendor/datepicker/daterangepicker.js"></script>
-
-    <!-- Main JS-->
-    <script src="js/global.js"></script>
-
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/select2/select2.min.js"></script>
+  <script src="vendor/datepicker/moment.min.js"></script>
+  <script src="vendor/datepicker/daterangepicker.js"></script>
+  <script src="js/global.js"></script>
+</body>
 
 </html>
-<!-- end document-->
-<!-- <style type="text/css"> 
-  .input-group{
-    color: white;
-  }
-</style> -->

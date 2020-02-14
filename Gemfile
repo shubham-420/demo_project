@@ -11,7 +11,6 @@ gem 'pg', '>= 0.18', '< 2.0'
 # gem 'twitter-bootstrap-rails', '~> 4.0'
 gem 'devise-i18n'
 gem 'devise'
-gem "twitter-bootstrap-rails"
 gem 'devise-bootstrap-views', '~> 1.0'
 
 gem 'jquery-rails'
@@ -64,3 +63,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "twitter-bootstrap-rails"
 gem 'sprockets-rails'
+gem 'pry'
