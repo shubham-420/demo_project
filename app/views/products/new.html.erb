@@ -1,29 +1,3 @@
-<%#= form_with model: @product, :url =>{:action => "create"}, class: "nifty_form" do |f| %>
-<%= form_for  @product  do |f| %>
-    <%= f.label :Product_Name %>
-    <%= f.text_field :name %>
-
-    <%= f.label :Product_description %>
-    <%= f.text_field :description %>
-
-    <%= f.label :Product_Price %>
-    <%= f.text_field :price %>
-
-    <%= f.label :Product_tax %>
-    <%= f.text_field :tax %>
-
-    <div class="field">
-    <%= f.label :Category %><br>
-    <%= f.collection_select :category_id, Category.all, :id, :name %>
-  </div>
-  <br>
-
-
-
-    <%= f.submit "Add Product" %>
-
-
-<% end %>
-
-
-
+<h2>Add new Product</h2><br>
+<%= render 'form' %> <br>
+<%= link_to 'Show All Products', products_path, class: "btn btn-primary" %>

@@ -3,9 +3,6 @@ class ApplicationController < ActionController::Base
 
   protected
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :name, :age, :number, :role])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :name, :age, :number, :role, :avatar])
   end
-  # before_action :authenticate_user!
-  # config.relative_url_root = ""
-  
 end
