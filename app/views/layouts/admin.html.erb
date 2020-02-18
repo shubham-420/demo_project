@@ -7,38 +7,36 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag "admin" %>
+  <%= javascript_include_tag "application" %>
 </head>
-<body>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Shopping-Site</a>
-    </div>
-    <ul class="nav navbar-nav align-right" >
-      <% if !user_signed_in? %>
-        <li><%= link_to "Sign Up", "/users/sign_up"  %></li>
-        <li><%= link_to "Log In", "/users/sign_in"  %></li>
-      <% else %>
-        <li><%if current_user.avatar.attached? %>
-          <%= image_tag current_user.avatar ,size: "60x60"%>
-          <!-- <img src = "<%#= (url_for(current_user.avatar)) %>"> -->
-        <%end%></li>
-        <li><%= link_to "Log Out", "/users/sign_out"  %></li>
-        <li><%= link_to "Edit Profile", "/users/edit"  %></li>
-        <li><%= link_to "Add Product", "/products/new" %> </li>
-        <li><%= link_to "All Product", products_path %> </li>
-      <% end %>
-    </ul>
-  </div>
-</nav>
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/welcome/index">Shopping-Site</a>
+        </div>
+        <ul class="nav navbar-nav align-right" >
+          <% if !user_signed_in? %>
+            <li><%= link_to "Sign Up", "/users/sign_up"  %></li>
+            <li><%= link_to "Log In", "/users/sign_in"  %></li>
+          <% else %>
+            <li>
+              <%if current_user.avatar.attached? %>
+                <%= image_tag current_user.avatar ,size: "60x60"%>
+              <%end%>
+            </li>
+            <li><%= link_to "Log Out", "/users/sign_out"  %></li>
+            <li><%= link_to "Edit Profile", "/users/edit"  %></li>
+            <li><%= link_to "Add Product", "/products/new" %> </li>
+            <li><%= link_to "All Product", products_path %> </li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
 
-<div class="container" align='center'>
-  <div class="row" >
-    <div class="col-lg-9">
+    <div class="container" align='center'>
       <%= bootstrap_flash %>
       <%= yield %>
     </div>
-  </div>
-</div>
-</body>
+  </body>
 </html>

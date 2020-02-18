@@ -50,12 +50,16 @@
           <div class="navbar-collapse collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav" >
               <% if !user_signed_in? %>
-                <li ><%= link_to "Sign In", "/users/sign_up"  %></li>
+                <li><%= link_to "Sign Up", "/users/sign_up"  %></li>
                 <li><%= link_to "Log In", "/users/sign_in"  %></li>
               <% else %>
+                <li><%if current_user.avatar.attached? %>
+                  <img src = "<%= (url_for(current_user.avatar)) %>" alt = "no profile photo" width="12%">
+                <%end%></li>
                 <li><%= link_to "Log Out", "/users/sign_out"  %></li>
-                <li><%= link_to "Edit", "/users/edit"  %></li>
-                <li><%= link_to "Add Product", "/products/new"  %> </li>
+                <li><%= link_to "Edit Profile", "/users/edit"  %></li>
+                <li><%= link_to "Add Product", "/products/new" %> </li>
+                <li><%= link_to "All Product", products_path %> </li>
               <% end %>
             </ul>
           </div>
@@ -65,31 +69,17 @@
     </div>
     </div>
 
-    <div class="container" align='center'>
+    <%= yield %>
+    <%= bootstrap_flash %>
+    <!-- <div class="container" align='center'>
       <div class="row" >
         <div class="col-lg-9">
-          <%= bootstrap_flash %>
-          <%= yield %>
         </div>
-      </div><!--/row-->
+      </div> -->
 
       <footer align="center">
         <p>&copy; Company 2020</p>
       </footer>
-
-    </div> <!-- /container -->
-
+    </div>
   </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
- 

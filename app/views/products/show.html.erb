@@ -1,36 +1,44 @@
-<div class="input-group">
-<p>
-  <strong>name:</strong>
-  <%= @product.name %>
-</p>
+<div class="jumbotron " >
+  <h1><%= @product.name%></h1>
+  <div class="row">
+    <p class="alignment">Category: <%= Category.find(@product.category.parent_category_id).name%></p>  
+  </div>
+  <div class="row">
+    <div class="col-sm-4 desc">
+      <p>Price:<%=@product.price%> Tax:<%= @product.tax%></p>
+    </div>
+      <p class="alignment">Sub Category: <%= @product.category.name%></p>
+  </div>
 </div>
-<div class="input-group">
-<p>
-  <strong>Price:</strong>
-  <%= @product.price %>
-</p>
-</div>
-<div class="input-group">
-<p>
-  <strong>Tax:</strong>
-  <%= @product.tax %>
-</p>
-</div>
-<div class="input-group">
-<p>
-  <strong>Description:</strong>
-  <%= @product.description %>
-</p>
-</div>
-<p>
-  <strong>Category:</strong>
-  <%= Category.find(@product.category.parent_category_id).name%>
-</p>
-<p>
-  <strong>Sub_Category:</strong>
-  <%= @product.category.name%>
-</p>
 
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 desc">
+      <h3>Description</h3>
+      <p><%=@product.description%></p>
+    </div>
+    <div class="col-sm-4" >
+      <%if @product.image.attached? %>
+        <%= image_tag @product.image %>
+      <%end%>
+    </div>
+  </div>
+</div>
 
-<%= link_to 'Edit', edit_product_path(@product) %><br>
-<td><%= link_to 'Show All Products', products_path %></td>
+<div align="center">
+  <%= link_to 'Show All Products', products_path, :class => "btn btn-primary" %>
+  <%= link_to 'Add New Product', new_product_path, :class => "btn btn-primary" %>
+  <%= link_to 'Edit Product', edit_product_path(@product), :class => "btn btn-primary" %><br>
+</div>
+
+<style>
+  .alignment{
+    float: right;
+  }
+  .desc{
+    text-align: left;
+  }
+  .jumbotron{
+    height: 250px;
+  }
+</style>
