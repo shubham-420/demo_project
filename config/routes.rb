@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
+  resources :locations
+  resources :addresses
+  get 'order/:id/checkout', to: 'orders#checkout', as: :checkouts
+  get 'cart/index'
+  get 'orders/allorder'
 
+  # get 'order_now(/:id)', to: 'order#order_now', as: :order
+  resources :orders
+  resources :carts
+  get 'buyers/index'
+  get 'users/index'
   resources :products
   devise_for :users, controllers: { sessions: 'users/sessions' }
   devise_scope :users do

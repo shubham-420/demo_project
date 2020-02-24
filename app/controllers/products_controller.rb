@@ -13,11 +13,11 @@ class ProductsController < ApplicationController
 
   def create
     @product = current_user.products.create(product_params)
-    if @product.save?
+    if @product.save
       redirect_to @product
     else
+      render 'new'
       # flash[:errors] = @product.errors.full_messages
-      rander 'new'
     end
   end
  

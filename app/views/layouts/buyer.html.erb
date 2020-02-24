@@ -25,14 +25,9 @@
                 <%= image_tag current_user.avatar ,size: "60x60"%>
               <%end%>
             </li>
-            <li><%= link_to "Log Out", "/users/sign_out" %></li>
-            <li><%= link_to "Edit Profile", "/users/edit" %></li>
-            <%if current_user.role == 'buyer'%>
-              <li><%= link_to "Add Address", new_location_path%><li>
-              <li><%= link_to " Cart [#{get_order_items}]", orders_path, method: :get %></li>
-                <%#= link_to " Cart #{@order_items.length if !@order_items.nil?}", orders_path, method: :get %>
-              <li><%= link_to " Order", orders_allorder_path, method: :get %></li>
-            <%end%>
+            <li><%= link_to "Log Out", "/users/sign_out"  %></li>
+            <li><%= link_to "Edit Profile", "/users/edit"  %></li>
+            <li><%= link_to "Orders", orders_path %></li>
           <% end %>
         </ul>
       </div>

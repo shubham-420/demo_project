@@ -1,0 +1,48 @@
+<%if !@order_items.nil?%>
+  <div class="div1" style="background-color: #eee;">
+    <h1> <%= current_user.id%></h1>
+    <h1> Total:<%= @order_items.length%></h1>
+    <h1> Price:<%= @order.total %></h1>
+    <%current_user.locations.each do|location|%>
+      <%= location.state%>
+      <%= radio_button_tag location.state, location.country %><br>
+    <%end%>
+    <h1> <%= link_to 'CheckOut', checkouts_path(@order), method: :get, :class => 'btn btn-primary' %> </h1>
+  </div>
+
+    <% @order_items.each do |order_item| %>
+      <div class="div1" style="background-color: #eee;">
+        <div class="row">
+          <h2><%= order_item.product.name %></h2>
+        </div>
+        <div class="row">
+          <%if order_item.product.image.attached? %>
+            <%= image_tag order_item.product.image, size: "150x100"%>
+          <%end%>
+        </div>
+        <div class="row">
+          <p>Price: <%= order_item.product.price%></p>
+          <p>quantity: <%= order_item.quantity%></p>
+          <%= link_to 'Show', product_path(order_item.product), :class => 'btn btn-primary'%>
+          <%= link_to 'Remove', order_path(order_item),
+                method: :delete,
+                data: { confirm: 'Are you sure?' }, :class => 'btn btn-primary' %>
+        </div>
+      </div>
+      <br>
+      <% end %>
+<%else%>
+  <div class="div1" style="background-color: #eee;">
+    <h1> No Item In Cart</h1>
+    <h1> <%= link_to 'Add Item', welcome_index_path, method: :get, :class => 'btn btn-primary' %> </h1> 
+  </div>
+<%end%>
+
+<style>
+   .div1 {
+  width: 300px;
+  height: 300px;
+  border: 1px solid blue;
+}
+  }
+</style>

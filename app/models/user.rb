@@ -6,5 +6,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :products
-  has_one_attached :avatar      
+  has_one_attached :avatar
+  has_many :locations
+  has_many :orders 
 end

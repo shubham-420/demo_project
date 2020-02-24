@@ -1,0 +1,23 @@
+<h1>Bill</h1>
+ 
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Quantity</th>
+    <th>price</th>
+    <th>Total</th>
+    <th></th>
+  </tr>
+ 
+  <% @order.order_items.each do|item|%>
+    <tr>
+      <td><%= item.product.name %></td>
+      <td><%= item.quantity %></td>
+      <td><%= item.product.price %></td>
+      <td><%= item.quantity*item.product.price %></td>
+      <td><%= link_to 'Show', product_path(item.product) %></td>
+    </tr>
+  <% end %>
+</table>
+<h1> Final Amount:<%= @order.total%></h1>
+<h1> <%= link_to 'CheckOut', order_path(@order), method: :put, :class => 'btn btn-primary' %> </h1> 

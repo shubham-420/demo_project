@@ -1,0 +1,19 @@
+<h1>Listing Articles</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>price</th>
+    <th>Tax</th>
+    <th>Category</th>
+    <th>Sub Category</th>
+  </tr>
+ 
+  <% @products.each do |product| %>
+    <tr>
+      <td><%= product.name %></td>
+      <td><%= product.price %></td>
+      <td><%= product.tax %></td>
+    </tr>
+  <% end %>
+</table>
