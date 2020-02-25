@@ -20,4 +20,9 @@
   <% end %>
 </table>
 <h1> Final Amount:<%= @order.total%></h1>
-<h1> <%= link_to 'CheckOut', order_path(@order), method: :put, :class => 'btn btn-primary' %> </h1> 
+<h1> Delivery Address:<%= @location.state %><%=@location.country%></h1>
+<%= form_with(scope: "order", url: order_path(@order), method: :put, local: true) do |form| %>
+  <%= form.hidden_field :location_id, value: @location.id %>
+  <%= form.submit  :class => "btn btn-primary", :value => "Order"%>
+<%end %>
+<h1> <%#= link_to 'Order', order_path(@order), method: :put, :class => 'btn btn-primary' %> </h1>

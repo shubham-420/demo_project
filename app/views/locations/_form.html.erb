@@ -11,27 +11,35 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :state %>
-    <%= form.text_field :state %>
+  <div class="form-group row">
+    <%= form.label :state, :class => "col-sm-2 col-form-label" %>
+    <div class="col-sm-6">
+      <%= form.text_field :state, :class => "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :country %>
-    <%= form.text_field :country %>
+  <div class="form-group row">
+    <%= form.label :country, :class => "col-sm-2 col-form-label" %>
+    <div class="col-sm-6">
+      <%= form.text_field :country, :class => "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :home %>
-    <%= form.text_field :home %>
+  <div class="form-group row">
+    <%= form.label :home, :class => "col-sm-2 col-form-label" %>
+    <div class="col-sm-6">
+      <%= form.text_field :home, :class => "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :pincode %>
-    <%= form.number_field :pincode %>
+  <div class="form-group row">
+    <%= form.label :pincode, :class => "col-sm-2 col-form-label" %>
+    <div class="col-sm-6">
+      <%= form.number_field :pincode, :class => "form-control" %>
+    </div>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit :class => "btn btn-primary"%>
   </div>
 <% end %>

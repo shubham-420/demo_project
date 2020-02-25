@@ -1,14 +1,26 @@
-<%if !@order_items.nil?%>
+<%if @order_items.any?%>
   <div class="div1" style="background-color: #eee;">
-    <h1> <%= current_user.id%></h1>
+    <h1> <%= current_user.name%></h1>
     <h1> Total:<%= @order_items.length%></h1>
     <h1> Price:<%= @order.total %></h1>
-    <%current_user.locations.each do|location|%>
-      <%= location.state%>
-      <%= radio_button_tag location.state, location.country %><br>
-    <%end%>
-    <h1> <%= link_to 'CheckOut', checkouts_path(@order), method: :get, :class => 'btn btn-primary' %> </h1>
-  </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <%if current_user.locations.any?%>
+          <%= form_with(scope: "order", url: checkouts_path(@order), method: :get, local: true) do |form| %>
+            <%= form.collection_select :location_id,current_user.locations.all, :id, :state, { include_blank: false }, { class: "form-control" }%>
+      </div>
+      <div class="col-sm-6">
+        <%= link_to 'Add Address ', new_location_path, :class => 'btn btn-primary' %>
+      </div>
+    </div>
+    <br>
+          <%= form.submit  :class => "btn btn-primary", :value => "Checkout"%>
+          <%end %>
+        <%else%>
+          <%= link_to 'Add Address ', new_location_path, :class => 'btn btn-primary' %>
+        </div></div>
+        <%end %>
+  </div><br>
 
     <% @order_items.each do |order_item| %>
       <div class="div1" style="background-color: #eee;">
@@ -30,7 +42,7 @@
         </div>
       </div>
       <br>
-      <% end %>
+    <% end %>
 <%else%>
   <div class="div1" style="background-color: #eee;">
     <h1> No Item In Cart</h1>

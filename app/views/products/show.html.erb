@@ -1,7 +1,7 @@
 <div class="jumbotron " >
   <h1><%= @product.name%></h1>
   <div class="row">
-    <p class="alignment">Category: <%= Category.find(@product.category.parent_category_id).name%></p>  
+    <p class="alignment">Category: <%= get_category(@product)%></p>  
   </div>
   <div class="row">
     <div class="col-sm-4 desc">
@@ -30,17 +30,12 @@
     <%= link_to 'Add New Product', new_product_path, :class => "btn btn-primary" %>
     <%= link_to 'Edit Product', edit_product_path(@product), :class => "btn btn-primary" %><br>
   <%else%>
-    <%= form_with(scope: "order", url: orders_path, method: :post, local: true) do |form| %>
-      <%#= form.hidden_field :total, value: 12 %>
-      <%#= form.hidden_field :status, value: 'pending' %>
+    <%= form_with(scope: "order_items", url: orders_path, method: :post, local: true) do |form| %>
       <%= form.hidden_field :product_id, value: @product.id %>
       <%= form.hidden_field :price, value: @product.price %>
-      <h3>Quantity <%= number_field_tag  :quantity , 1, within: 1...10 , :class =>'number'%></h3>
-      <!-- <input class="quantity" min="1" name="quantity" value="1" type="number"> -->
-    <%= form.submit  :class => "btn btn-primary", :value => "Add to cart"%>
+      <h3>Quantity <%= form.number_field  :quantity, value: "1" ,class: 'number' %></h3>
+      <%= form.submit  :class => "btn btn-primary", :value => "Add to cart"%>
     <%end %>
-      <%#= link_to "Add to cart", orders_path, method: :post, :class => "btn btn-primary" %>
-
   <%end%>
 </div>
 

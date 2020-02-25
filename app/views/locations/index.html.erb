@@ -2,7 +2,7 @@
 
 <h1>Locations</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>State</th>
@@ -22,7 +22,6 @@
         <td><%= location.pincode %></td>
         <td><%= link_to 'Show', location %></td>
         <td><%= link_to 'Edit', edit_location_path(location) %></td>
-        <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

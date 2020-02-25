@@ -30,9 +30,12 @@
             <%if current_user.role == 'buyer'%>
               <li><%= link_to "Add Address", new_location_path%><li>
               <li><%= link_to " Cart [#{get_order_items}]", orders_path, method: :get %></li>
-                <%#= link_to " Cart #{@order_items.length if !@order_items.nil?}", orders_path, method: :get %>
-              <li><%= link_to " Order", orders_allorder_path, method: :get %></li>
+              <li><%= link_to " Orders", order_path(current_user), method: :get %></li>
             <%end%>
+            <% if current_user.role == 'seller' %>
+              <li><%= link_to "Add Product", "/products/new" %> </li>
+              <li><%= link_to "All Product", products_path %> </li>
+            <% end %>
           <% end %>
         </ul>
       </div>

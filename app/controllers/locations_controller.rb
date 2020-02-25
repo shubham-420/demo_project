@@ -1,10 +1,11 @@
 class LocationsController < ApplicationController
+  skip_before_action :verify_authenticity_token  
   before_action :set_location, only: [:show, :edit, :update, :destroy]
-
+  layout 'admin'
   # GET /locations
   # GET /locations.json
   def index
-    @locations = Location.all
+    @locations = current_user.locations
   end
 
   # GET /locations/1
@@ -25,16 +26,12 @@ class LocationsController < ApplicationController
   # POST /locations.json
   def create
     @location = current_user.locations.create(location_params)
-
-    respond_to do |format|
-      if @location.save
-        format.html { redirect_to @location, notice: 'Location was successfully created.' }
-        format.json { render :show, status: :created, location: @location }
-      else
-        format.html { render :new }
-        format.json { render json: @location.errors, status: :unprocessable_entity }
-      end
+    if @location.save
+      redirect_to orders_path, method: :get
+    else
+      render 'new'
     end
+
   end
 
   # PATCH/PUT /locations/1
