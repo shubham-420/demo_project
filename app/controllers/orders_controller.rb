@@ -44,8 +44,6 @@ class OrdersController < ApplicationController
   def checkout
     @order = Order.find(params[:id])
     @location = Location.find(params[:order][:location_id])
-
-    # binding.pry
   end
 
   def show
