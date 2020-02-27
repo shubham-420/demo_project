@@ -1,48 +1,26 @@
 <%if user_signed_in?%>
   <%if user_role == 'buyer' %>
-    <%= form_with(model: @product, url:search_welcome_index_path, :method => 'get', remote: true) do |form| %> 
+    <%= form_with(model: @product, url:search_welcome_index_path, :method => 'get', remote: true) do |form| %>
       Store <%= form.text_field_tag :search%>
-
+        <%= form.collection_select :category_id ,Category.where(parent_category_id: nil).all, :id, :name, { prompt: "Choose a category" }, id: "category_id" %>
+        <div id="subcategories_select">
+          <%= form.collection_select :sub_category_id, Category.all, :id, :name, { prompt: "Choose a subcategory" } ,id: "sub_category_id"%>
+        </div>
       <%= submit_tag 'Search', name: nil, :class => 'search_products'  %>
     <% end %>
-    <%#= text_field_tag :search, "", class: "search_products" %>
-    <tbody>
       <div id="product_tbody_content">
         <%if !@products.nil?%>
           <%= render 'index_content' %>
         <%end%>
       </div>
-    </tbody>
+
   <%elsif user_role == 'seller' %>
     <%= current_user.role%>
   <%end %>
 <%end%>
 
 
-
-
-
-
-
-
-
-
-
-
-
- <script type="text/javascript">
-   $(".search_products").onclick(function() {
-       var search = $(this).val();
-       debugger
-       $.ajax({
-          url: "/welcome/search",
-          type: "GET",
-          dataType: "script",
-          data: {search: search}
-       });
-   });
-
-
+<script type="text/javascript">
    $('#category_id').change(function(){
     var category_id = $(this).val();
     $.ajax({
@@ -53,5 +31,15 @@
     });
   })
 
+   $(".search_products").onclick(function() {
+       var search = $(this).val();
+       // var category_id = $('#subcategories_select').val();
+       $.ajax({
+          url: "/welcome/search",
+          type: "GET",
+          dataType: "script",
+          data: {search: category_id}
+       });
+   });
 </script>
   

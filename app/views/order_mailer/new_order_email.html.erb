@@ -1,0 +1,30 @@
+<%#binding.pry%>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h3>Hello <%=@user.name%></h3>
+    <p>your order is succesfully placed</p>
+    <p>order id <%= @order.id %></p>
+
+    
+    <% @order.order_items.each do |item|%>
+      <h3>Product id <%= item.product_id%></h3>
+      <h3>Product name <%= item.product.name%></h3>
+      <h3>Product price <%= item.product.price%></h3>
+      <h3>Product Quantity <%= item.quantity%></h3>
+      <h3>--------X-------- </h3>
+    <%end %>
+      
+    <p>
+    Order details<br>
+    --------------------------
+    </p>
+    <p>Name: <%= @user.name %></p>
+    <p>Shipping Address: <%= @location.home %></p>
+    Message:<br>
+    ----X Happy Shopping :) X----
+    </p>
+  </body>
+</html>
