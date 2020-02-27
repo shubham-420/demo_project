@@ -43,7 +43,6 @@ class OrdersController < ApplicationController
 
   def checkout
     @order = Order.find(params[:id])
-    @location = Location.find(params[:order][:location_id])
   end
 
   def show

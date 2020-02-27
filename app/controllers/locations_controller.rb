@@ -20,7 +20,7 @@ class LocationsController < ApplicationController
   def create
     @location = current_user.locations.create(location_params)
     if @location.save
-      redirect_to orders_path, method: :get
+      redirect_to orders_path, method: :put
     else
       render 'new'
     end

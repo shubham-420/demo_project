@@ -1,0 +1,25 @@
+<h2>All Products </h2>
+<% if @products.any? %>
+
+  <% @products.each do |product| %>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-7 x" style="background-color:lavender;">
+        <h1 align="center"><%=product.name%></h1>
+        <h5>Price:<%= product.price%></h5>
+        <h5>Tax:<%= product.tax%></h5>
+        <h5>Category:<%= Category.find(product.category.parent_category_id).name%></h5>
+        <h5>Sub_Category:<%= product.category.name%></h5>
+      </div>
+      <div class="col-sm-5" style="background-color:lavenderblush;">
+        <%if product.image.attached? %>
+          <%= image_tag product.image, size: "150x100"%>
+        <%end%>
+        <div>
+        <%= link_to 'show', product_path(product), class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div><br>
+  <%end %>
+<%end %>

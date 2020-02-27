@@ -12,12 +12,11 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = current_user.products.create(product_params)
+    @product = current_user.products.create!(product_params)
     if @product.save
       redirect_to @product
     else
       render 'new'
-      # flash[:errors] = @product.errors.full_messages
     end
   end
  
@@ -31,15 +30,21 @@ class ProductsController < ApplicationController
   end
 
   def update
-  if @product.update(product_params)
-    redirect_to @product
-  else
-    render 'edit'
+    if @product.update(product_params)
+      redirect_to @product
+    else
+      render 'edit'
+    end
   end
-end
+
+  def get_subcategories
+    c =  Category.find(params[:category_id])
+    @subcategories =c.sub_categories
+  end
 
    private
   def product_params
+    # binding.pry
     params.require(:product).permit(:name, :description, :price, :tax, :category_id, :image)
   end
 

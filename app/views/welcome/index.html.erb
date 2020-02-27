@@ -1,34 +1,57 @@
 <%if user_signed_in?%>
   <%if user_role == 'buyer' %>
-    <h2>All Products </h2>
-    <% @products.each do |product| %>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-7 x" style="background-color:lavender;">
-          <h1 align="center"><%=product.name%></h1>
-          <h5>Price:<%= product.price%></h5>
-          <h5>Tax:<%= product.tax%></h5>
-          <h5>Category:<%= Category.find(product.category.parent_category_id).name%></h5>
-          <h5>Sub_Category:<%= product.category.name%></h5>
-        </div>
-        <div class="col-sm-5" style="background-color:lavenderblush;">
-          <%if product.image.attached? %>
-            <%= image_tag product.image, size: "150x100"%>
-          <%end%>
-          <div>
-          <%= link_to 'show', product_path(product), class: "btn btn-primary" %>
-          </div>
-        </div>
+    <%= form_with(model: @product, url:search_welcome_index_path, :method => 'get', remote: true) do |form| %> 
+      Store <%= form.text_field_tag :search%>
+
+      <%= submit_tag 'Search', name: nil, :class => 'search_products'  %>
+    <% end %>
+    <%#= text_field_tag :search, "", class: "search_products" %>
+    <tbody>
+      <div id="product_tbody_content">
+        <%if !@products.nil?%>
+          <%= render 'index_content' %>
+        <%end%>
       </div>
-    </div><br>
-    <%end %>
+    </tbody>
   <%elsif user_role == 'seller' %>
     <%= current_user.role%>
   <%end %>
 <%end%>
 
-<style >
-  .x{
-    text-align: left;
-  }
-</style>
+
+
+
+
+
+
+
+
+
+
+
+
+ <script type="text/javascript">
+   $(".search_products").onclick(function() {
+       var search = $(this).val();
+       debugger
+       $.ajax({
+          url: "/welcome/search",
+          type: "GET",
+          dataType: "script",
+          data: {search: search}
+       });
+   });
+
+
+   $('#category_id').change(function(){
+    var category_id = $(this).val();
+    $.ajax({
+      url: "/products/" + category_id + "/get_subcategories",
+      type: "GET",
+      dataType: "script",
+      data: { "category_id": category_id } 
+    });
+  })
+
+</script>
+  

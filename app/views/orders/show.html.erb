@@ -5,6 +5,7 @@
     <th>Quantity</th>
     <th>price</th>
     <th>Total</th>
+    <th>Address</th>
     <th></th>
   </tr>
  
@@ -15,6 +16,7 @@
       <td><%= item.quantity %></td>
       <td><%= item.price %></td>
       <td><%= item.quantity*item.product.price %></td>
+      <td><%= allorder.location.state %></td>
       <td><%= link_to 'Show', product_path(item.product) %></td>
     </tr>
     <% end%>
