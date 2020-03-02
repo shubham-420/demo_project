@@ -4,7 +4,7 @@
 // that code so it'll be compiled.
 
 
-require jquery_ujs
+
 require jquery
 require("@rails/ujs").start()
 require("turbolinks").start()
