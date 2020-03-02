@@ -9,10 +9,7 @@ class OrderMailer < ApplicationMailer
   def seller_order_email
     @products = Array.new
     @order = Order.find(params[:order][:id])
-    @buyer = @order.user
-    @seller = User.find(params[:user_id])
     @products = params[:products]
-    # binding.pry
     mail(to: @seller.email, subject: "You got a new order!")
 
   end

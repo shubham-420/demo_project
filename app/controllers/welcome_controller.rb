@@ -4,7 +4,6 @@ class WelcomeController < ApplicationController
   def index
     if user_signed_in?
       if user_role == 'buyer'
-       # binding.pry
         @products = Product.paginate(page: params[:page], per_page: 5) 
       else
         user_role

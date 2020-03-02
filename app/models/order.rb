@@ -6,11 +6,10 @@ class Order < ApplicationRecord
   after_update :send_mail
 
   def send_mail
-    @order = Order.find(id)
     hash = Hash.new
 
-    if @order.status == 'done'
-      order_items = @order.order_items
+    if status == 'done'
+      order_items = self.order_items
       order_items.each do |item|
         hash[item.user.id] = [] unless hash[item.user.id].present?
         hash[item.user.id] << item.product_id
@@ -20,11 +19,5 @@ class Order < ApplicationRecord
       end
     end
   end
-        # binding.pry
-
-  # def status_not_pending?
-  #   binding.pry
-  #   return false
-  # end
 
 end
