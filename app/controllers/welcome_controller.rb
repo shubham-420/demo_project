@@ -23,7 +23,9 @@ class WelcomeController < ApplicationController
     @category = Category.find(params[:category_id])
     @sub_category = Category.find( params[:product][:category_id])
     @products = Product.where(name: @name, category_id: params[:product][:category_id])
-    respond_to :js
+    respond_to do |format|
+      format.js
+    end
   end
 
 end
