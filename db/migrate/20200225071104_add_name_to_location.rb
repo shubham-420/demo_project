@@ -1,7 +1,5 @@
 class AddNameToLocation < ActiveRecord::Migration[6.0]
   def change
-  	create_table :locations do |t|
-      t.string :name
-  	end
+  	add_column :locations, :name, :string
   end
 end
