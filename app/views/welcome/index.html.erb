@@ -1,16 +1,32 @@
 <%if user_signed_in?%>
   <%if user_role == 'buyer' %>
     <%= form_with(model: @product, url:search_welcome_index_path, :method => 'get', remote: true) do |form| %>
-      Store <%= form.text_field_tag :search%>
+      <div class="row">
+      <div class="col-sm-3">
+        Search <%= form.text_field_tag :search%>
+      </div>
+      <div class="col-sm-3">
         <%= form.collection_select :category_id ,Category.where(parent_category_id: nil).all, :id, :name, { prompt: "Choose a category" }, id: "category_id" %>
+      </div>
+      <div class="col-sm-3">
         <div id="subcategories_select">
           <%= form.collection_select :sub_category_id, Category.all, :id, :name, { prompt: "Choose a subcategory" } ,id: "sub_category_id"%>
         </div>
-      <%= submit_tag 'Search', name: nil, :class => 'search_products'  %>
+      </div>
+      <div class="col-sm-3">
+        <%= submit_tag 'Search', name: nil, :class => 'search_products', :class => 'btn btn-primary'  %>
+      </div>
+      </div>
     <% end %>
       <div id="product_tbody_content">
         <%if !@products.nil?%>
           <%= render 'index_content' %>
+          <div class="digg_pagination">
+            <div class="page_info">
+              <%= page_entries_info @products %>
+            </div>
+            <%= will_paginate @products, :container => false %>
+          </div>
         <%end%>
       </div>
 

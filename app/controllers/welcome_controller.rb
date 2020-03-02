@@ -5,7 +5,7 @@ class WelcomeController < ApplicationController
     if user_signed_in?
       if user_role == 'buyer'
        # binding.pry
-        @products = Product.all
+        @products = Product.paginate(page: params[:page], per_page: 5) 
       else
         user_role
         render layout: "admin"

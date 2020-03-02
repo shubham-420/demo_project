@@ -1,6 +1,7 @@
 class OrderItem < ApplicationRecord
   belongs_to :product
   belongs_to :order
+  has_one :user, through: :product
 
   after_save :update_total
   after_destroy :update_total

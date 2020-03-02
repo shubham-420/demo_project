@@ -35,9 +35,9 @@ class OrdersController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
+    
     @location = Location.find(params[:order][:location_id])
     @order.update!(status: "done",location_id: @location.id)
-    # binding.pry
     OrderMailer.with(order: @order).new_order_email.deliver_later
     flash[:notice] = "Successfully placed Order" 
     redirect_to order_path, method: :get

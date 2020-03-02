@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h3>Hello <%=@seller.name%></h3>
+    <% @products.each do |product_id|%>
+     <% product = Product.find(product_id)%>
+      Product Name :- <%=product.name %>
+     Product price :-  <%=product.price %>
+    <%end%>
+    <p>Buyer Name: <%= @buyer.name %></p>
+    <p>Shipping Address: <%= @order.location.home %></p>
+    </p>
+  </body>
+</html>
+<%#binding.pry%>
