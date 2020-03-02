@@ -45,14 +45,6 @@ ActiveRecord::Schema.define(version: 2020_02_26_122235) do
     t.index ["parent_category_id"], name: "index_categories_on_parent_category_id"
   end
 
-  create_table "employes", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.text "bio"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "locations", force: :cascade do |t|
     t.string "state"
     t.string "country"

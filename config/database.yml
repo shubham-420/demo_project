@@ -87,7 +87,7 @@
 development:
  adapter: postgresql
  port: 5432
- database: shopping_site
+ database: shopping_site1
  host: localhost
  username: postgres
  password: rails
