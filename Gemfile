@@ -16,7 +16,7 @@ gem 'devise-bootstrap-views', '~> 1.0'
 
 gem 'jquery-rails'
 
-gem 'puma', '~> 4.1'
+gem 'puma', '~> 4.3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 
